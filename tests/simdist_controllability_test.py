@@ -1,9 +1,6 @@
 """Tests for ControllabilitySimilarityTransformDist (the InputDSA joint score).
 
-The joint score aligns the controllability matrices K1 and K2 of two LTI
-systems with an orthogonal C. These tests pin the direction of that alignment:
-C maps system 1 onto system 2 (C @ K1 ~ K2), the same convention fit_score uses
-for the state and control components (C @ A1 @ C.T vs A2).
+Test for Issue #12
 """
 import numpy as np
 import pytest
@@ -49,6 +46,7 @@ def test_joint_distance_invariant_to_latent_rotation(
     assert np.allclose(np.asarray(score), 0.0, atol=TOL)
 
 
+# noinspection PyPep8Naming
 @pytest.mark.parametrize("n,m", [(6, 3)])
 @pytest.mark.parametrize("seed", [1])
 def test_returned_C_maps_system1_onto_system2(seed, n, m):
